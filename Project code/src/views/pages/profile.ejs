@@ -1,0 +1,157 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu2') %>
+
+<style>
+    .buttons{
+        position: relative;
+        text-align: right;
+        bottom: 5px;
+        right: 5px;
+    }
+    .col{
+    position: relative;
+    width: 28%;
+    height: 28%;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+  }
+</style>
+
+<main>
+    <div class="col"><%- include ('../partials/message') %></div>
+
+    <div class="container">
+        <br>
+        <h2><b>Current Username:</b></h2>
+        <h4><%= username %></h4>
+
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#Changeusername">
+            Change Username
+        </button>
+
+        <div class="modal fade" id="Changeusername" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Username</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form action ="\profilecu" method="POST">
+                            <label for="currentUsername" class="col-form-label"><b>Current Username:</b></label>
+                            <p><%= username %></p>
+
+                            <label for="newUsername" class="col-form-label"><b>New Username</b></label>
+                            <input type="text" class="form-control" id="newUsername" name="newUsername" required>
+
+                            <label for="currentPasswordU" class="col-form-label"><b>Current Password</b></label>
+                            <input type="password" class="form-control" id="currentPasswordU" name="currentPasswordU" required>
+                            <hr>
+
+                            <div class="buttons">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <hr>
+        <h2><b>Current Avatar:</b></h2>
+        <br>
+        <img src=<%= img %> alt="avatar" height="200">
+        <br>
+        <br>
+
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ChangeAvatar">
+            Change Avatar
+        </button>
+
+        <div class="modal fade" id="ChangeAvatar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Avatar</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form action ="\profileca" method="POST">
+                            <label for="currentAvatar" class="col-form-label"><b>Current Avatar:</b></label>
+                            <br>
+                            <img src=<%= img %> alt="avatar" height="50">
+                            <br>
+                            <br>
+
+                            <label for="newURL" class="col-form-label"><b>New Image Url</b></label>
+                            <input type="text" id = "newURL" class="form-control" name="newURL" required autofocus="" oninvalid="this.setCustomValidity('please submit a link with a picture extention such as .png or .jpg')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')" pattern="(https?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg))">
+
+                            <label for="currentPasswordA" class="col-form-label"><b>Current Password</b></label>
+                            <input type="password" class="form-control" id="currentPasswordA" name="currentPasswordA" required>
+                            <hr>
+
+                            <div class="buttons">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <h2><b>Password</b></h2>
+        <br>
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ChangePassword">Change Password</button>
+
+        <div class="modal fade" id="ChangePassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <form action ="\profilecp" method="POST">
+                            <label for="newPassword1" class="col-form-label"><b>New Password</b></label>
+                            <input type="password" id ="newPassword1" class="form-control" name="newPassword1" required autofocus="" oninvalid="this.setCustomValidity('password must have at least 8 digits, including one number, one lowercase and uppercase letter, and one symbol')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{7,16}$" >
+
+                            <label for="newPassword2" class="col-form-label"><b>Confirm New Password</b></label>
+                            <input type="password" id ="newPassword2" class="form-control" name="newPassword2" required autofocus="" oninvalid="this.setCustomValidity('password must have at least 8 digits, including one number, one lowercase and uppercase letter, and one symbol')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{7,16}$" >
+
+                            <label for="currentPasswordP" class="col-form-label"><b>Current Password</b></label>
+                            <input type="password" class="form-control" id="currentPasswordP" name="currentPasswordP" required>
+                            <hr>
+
+                            <div class="buttons">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+</main>
+
+<%- include ('../partials/footer') %>

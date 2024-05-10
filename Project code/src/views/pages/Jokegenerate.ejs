@@ -1,0 +1,36 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu2') %>
+
+<main>
+  <div class="col"><%- include ('../partials/message') %></div>
+  <div class="container">
+    <!-- THE REST OF YOUR HTML CODE GOES HERE -->
+
+    <form style="margin-top:5%;" action="/displayjokes" method="POST">
+
+    <div class="mb-3">
+      <label for="jokefilter" class="form-label">Joke Filter</label>
+      <select id="jokefilter" name = "jokefilter" class="form-select" required>
+        <option value="dadJokes">Dad Jokes</option>
+        <option value="yoMama">Yo Mama</option>
+        <option value="french">French Jokes</option>
+        <option value="geek">Geek Jokes</option>
+        <!-- <option value="bread">Bread Puns</option> -->
+      </select>
+    </div>
+    
+    <div class="mb-3">
+        <label for="quantity" class="form-label">Number of Jokes</label>
+        <input type="number" class="form-control" id="quantity" name="quantity" value = 1 min="1" max="15" required>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> Generate Joke </button>
+    </div>
+    </form>
+
+
+  </div>
+</main>
+
+<%- include ('../partials/footer') %>

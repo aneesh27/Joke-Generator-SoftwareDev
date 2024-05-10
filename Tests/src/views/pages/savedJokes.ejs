@@ -1,0 +1,78 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu2') %>
+<body style="background-image: url('https://i.imgur.com/Ao6KnYX.jpg'); background-size: cover; background-repeat: no-repeat;
+background-attachment: fixed;">
+<style>
+  .col{
+  position: relative;
+  width: 28%;
+  height: 28%;
+  text-align: center;
+  margin: auto;
+  padding: 10px;
+}
+</style>
+<main>
+  <div class="col"><%- include ('../partials/message') %></div>
+  <div class="container">
+    <!-- THE REST OF YOUR HTML CODE GOES HERE -->
+    <table class="table table-striped table-dark" style="width: 100%; margin-top: 3%;">
+      <tr>
+        <th>Type</th>
+        <th>Joke</th> 
+        <th></th>
+      </tr>
+      <tbody>
+        <%
+        var saved_entry = "";
+        var sLength = 0;
+        var saved_type ="";
+        
+      
+        
+        sLength = results.length;
+        console.log(sLength);
+        if(sLength != 0){
+          for (let i = 0; i < sLength; i++) {
+            console.log("BEHA:" + results[i].type)
+            if(results[i].type == "dadjokes"){
+              saved_type = "Dad Jokes";
+            } else if(results[i].type == "yoMama"){
+              console.log("HA:" + results[i].type);
+              saved_type = "Yo Mama";
+            } else if(results[i].type == "french"){
+              saved_type = "Françaiss";
+            } else if(results[i].type == "geek"){
+              saved_type = "Geek";
+            } else if(results[i].type == "bread"){
+              saved_type = "Bread";
+            }
+            //rgb(74, 184, 177)
+
+            saved_entry += `
+              <form action="/saved/remove/${results[i].joke_id}" method="POST">
+                <tr>
+                  <td>${saved_type}</td>
+                  <input type="hidden" name="remove_type" value="${results[i].type}"/>
+                  <td>${results[i].text}</td>
+                  <input type="hidden" name="remove_joke" value="${results[i].text}"/>
+                  <td><button type="submit" style="background-color:rgb(74, 184, 177); border: none; color: black; font-weight: bold;"class="btn btn-primary" target="_blank">Remove</button></td>
+                </tr>
+              </form>
+                `
+          }
+        }
+      
+          %>
+        <%- saved_entry %>
+      </tbody>
+    </table>
+  </div>
+    <div style="margin-left: 45%; margin-bottom: 3%;">
+    <a href="/jokes" style="background-color:rgb(47, 47, 47); border: none; color: rgb(205, 205, 205); font-weight:normal; font-size: 20px"class="btn btn-primary" >Generate More!</a>
+  </div>
+
+</main>
+</body>
+
+<%- include ('../partials/footer') %>

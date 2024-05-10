@@ -1,0 +1,51 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu') %>
+<style>
+  .login{
+    position: relative;
+    bottom: 45px;
+    left: 0%;
+  }
+  .button1{
+    position: relative;
+    left: 93.5%;
+  }
+  .col{
+    position: relative;
+    width: 28%;
+    height: 28%;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+  }
+</style>
+<main>
+  <div class="col"><%- include ('../partials/message') %></div>
+  <div class="container">
+    <form action="/register" method="POST">
+      <legend>
+        <strong>Register</strong>
+      </legend>
+      <div class="mb-3">
+          <label for="exampleInputUsername1" class="form-label">Username</label>
+          <input type="username" id="username" class="form-control" name="username" required >
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" id ="password" class="form-control" name="password" required autofocus="" oninvalid="this.setCustomValidity('at least 8 digits including one number, lowercase and uppercase letter, and a symbol')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{7,16}$" >
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Profile Image URL</label>
+          <input type="text" id = "img_url" class="form-control" name="img_url" required autofocus="" oninvalid="this.setCustomValidity('Make sure the link starts with https and ends with image extention For example : http:\\-.png')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')" pattern="(https?:\/\/.*\.(?:png|jpg|jpeg|gif|png|svg))">
+        </div>
+        <div class="button1">
+          <button type="submit" id="submit_button" name="submit" class="btn btn-dark">Register</button>
+        </div>  
+    </form>
+    <div class="login" >
+      <p>Existing User? <a class="mb-3" href="/login" position> Login </a></p>
+    </div>
+  </div>
+</main>
+
+<%- include ('../partials/footer') %>

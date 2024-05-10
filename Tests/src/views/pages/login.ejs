@@ -1,0 +1,49 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu') %>
+<style>
+  .login{
+    position: relative;
+    bottom: 45px;
+    left: 0%;
+  }
+  .button1{
+    position: relative;
+    left: 94.8%;
+  }
+  .col{
+    position: relative;
+    width: 28%;
+    height: 28%;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+  }
+</style>
+<main>
+  <div class="col"><%- include ('../partials/message') %></div>
+  <div class="container">
+    <form action="/login" method="post">
+      <legend>
+        <strong>Login</strong>
+      </legend>
+      <div class="form-element-wrapper">
+        <label for= "username">Username</label>
+        <input name= "username" type="username" class="form-control" id="username" required>
+        <br>
+        <label for= "password">Password</label>
+        <input name = "password" type="password" class="form-control" id="password" required required autofocus="" oninvalid="this.setCustomValidity('at least 8 digits including one number, lowercase and uppercase letter, and a symbol')" onchange="try{setCustomValidity('')}catch(e){}" oninput="setCustomValidity(' ')" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{7,16}$">
+        <br>
+        <div class="button1">
+          <button type="submit" id="submit_button" name="submit" class="btn btn-dark">Login</button>
+        </div>
+      </div>
+    </form>
+    <div class="login" >
+      <p>New User? <a class="form-element-wrapper" href="/register" position> Register </a></p>
+    </div>
+  </div>
+</div>
+    
+</main>
+
+<%- include ('../partials/footer') %>
